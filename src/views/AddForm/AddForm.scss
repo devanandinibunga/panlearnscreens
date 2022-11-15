@@ -1,0 +1,43 @@
+.add-org-container{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    margin-top: 2%;
+    // flex-wrap: wrap;
+    // justify-content: center;
+    // align-items: center;
+    // padding: 2%;
+    // height: 50vh;
+    // justify-content: center;
+    // align-items: center;
+    .add-org-img-container{
+        width: 30%;
+    }
+    .add-org-form{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        .add-org-form-item{
+            width: 40%;
+            // line-height: 20vh;
+            // font-size: 3em;
+            margin-right: 4%;
+            margin-bottom: 3%;
+        }
+    }   
+}
+.add-org-button-container{
+    display: flex;
+    // align-items: flex-end;
+    justify-content: flex-end;
+    margin-right: 13%;
+    margin-top: 5%;
+    
+}
+.add-org-button{
+    width: 100%;
+    // color: black;
+    margin: 20px;
+    // background-color: red;
+    
+}

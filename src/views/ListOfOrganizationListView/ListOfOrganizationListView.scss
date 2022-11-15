@@ -1,0 +1,41 @@
+// .navbar{
+//     position: absolute;
+//     width: 100%;
+//     height: 83px;
+//     left: 0px;
+//     top: 0px;
+//     background: red;
+//     // border:1 solid blueviolet;
+// }
+
+.list-view-logo-name{
+    display: flex;
+    width: 100%;
+}
+.list-view-logo{
+    margin-right: 10px;
+}
+.list-view-name{
+    padding-top: 8px;
+}
+
+    .org-table{
+        padding: 2%;
+        .ant-table-row{
+            // padding: 3%;
+            // background-color: green;
+            height: 50px;
+            
+        }
+    }
+    table tbody tr {
+        height:60px;
+        font-size: 13px;
+        // margin: 5%;
+    }
+
+    .ant-table-tbody>tr>td, .ant-table-thead>tr>th, .ant-table tfoot>tr>td, .ant-table tfoot>tr>th {
+        position: relative;
+        padding: 1px;
+        overflow-wrap: break-word;
+    }

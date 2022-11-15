@@ -1,0 +1,85 @@
+.edit-org-container{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    margin-top: 2%;
+    // flex-wrap: wrap;
+    // justify-content: center;
+    // align-items: center;
+    // padding: 2%;
+    // height: 50vh;
+    // justify-content: center;
+    // align-items: center;
+    .edit-org-img-container{
+        width: 30%;
+    }
+    .edit-org-form{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        .edit-org-form-item{
+            width: 40%;
+            // line-height: 20vh;
+            // font-size: 3em;
+            margin-right: 4%;
+            margin-bottom: 3%;
+        }
+    }   
+}
+.edit-org-button-container{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-right: 13%;
+    margin-top: 1%;
+    .edit-org-button{
+        width: 95%;
+        color: black;
+        margin-right: 5%;
+    }
+}
+.reset-button{
+    border-color: #C0C0C0;
+    color:#0076BF;
+}
+.reset-password-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    // justify-content: center;
+}
+.reset-password-title{
+    font-size: 28px;
+    font-weight: 600;
+}
+.reset-password-input{
+    width: 100%;
+}
+.ant-modal-confirm-body .ant-modal-confirm-title {
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    line-height: normal;
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.ant-modal-confirm-body>.anticon+.ant-modal-confirm-title+.ant-modal-confirm-content {
+    margin-left: 0;
+    text-align: center;
+    font-size: 18px;
+    color: grey;
+}
+
+.ant-modal-confirm-success .ant-modal-confirm-body>.anticon {
+    color: #52c41a;
+    width: 100%;
+    font-size: 5em;
+    margin-bottom: 10%;
+}
+
+.ant-modal-confirm .ant-modal-confirm-btns {
+    margin-top: 24px;
+    text-align: right;
+    visibility: hidden;
+}
