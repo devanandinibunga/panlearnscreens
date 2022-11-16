@@ -7,6 +7,7 @@ import "./EditForm.scss"
 import { TreeSelect, message } from "antd";
 import { AddEditForm } from '../../components/AddEditForm';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import PropTypes from "prop-types";
 // import { datacontext } from '../../Fixtures/Data';
 // const {Text}=Typography;
 // const {handleCancel,showModal,isModalOpen}=Modal;
@@ -50,7 +51,7 @@ const treeData = [
 ];
 
 
-export const EditForm = () => {
+export const EditForm = ({cardData}) => {
     const beforeUpload = (file) => {
         const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
         if (!isJpgOrPng) {
@@ -132,23 +133,40 @@ export const EditForm = () => {
     },
   };
 
-  let updatedData = localStorage.getItem("eachCardDataToLocalStorage");
-  let parsedUpdateData = JSON.parse(updatedData);
+  // let updatedData = localStorage.getItem("eachCardDataToLocalStorage");
+  // let parsedUpdateData = JSON.parse(updatedData);
+
+  
+
+ const editedLocalStorageData = (values) => {
 
   let updatedNew = localStorage.getItem("cardsDataInLocalStorage");
   let parsedUpdateNew = JSON.parse(updatedNew);
 
- const editedLocalStorageData = (values) => {
-    
-  parsedUpdateNew[parsedUpdateData.index]  = values  
-  localStorage.setItem("cardsDataInLocalStorage",JSON.stringify(parsedUpdateNew))
-  console.log(parsedUpdateNew)
+  let index = parsedUpdateNew.findIndex(eachItem => eachItem.id === cardData.id)
+    console.log(index)
+
+    let id = values['id']
+
+    id = cardData.id
+
+    parsedUpdateNew[index] = values;
+    parsedUpdateNew[index].id = id;
+    localStorage.setItem('cardsDataInLocalStorage',JSON.stringify(parsedUpdateNew));
+    window.location.href="/Organizations";
+
+  // parsedUpdateNew[parsedUpdateData.index]  = values  
+  // localStorage.setItem("cardsDataInLocalStorage",JSON.stringify(parsedUpdateNew))
+  // console.log(parsedUpdateNew)
 //   values.logo=imageUrl
 };
   return (
     <div  width="100%" >
         <h1>Edit Organization</h1>
-        <AddEditForm  tProps={tProps} uploadButton={uploadButton}  beforeUpload={beforeUpload} handleChange={handleChange} normFile={normFile} imageUrl={imageUrl} editedLocalStorageData={editedLocalStorageData} />
+        <AddEditForm  tProps={tProps} cardData={cardData} uploadButton={uploadButton}  beforeUpload={beforeUpload} handleChange={handleChange} normFile={normFile} imageUrl={imageUrl} editedLocalStorageData={editedLocalStorageData} />
     </div>
   );
+}
+EditForm.propTypes={
+  cardData:PropTypes.object
 }

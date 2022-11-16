@@ -1,12 +1,17 @@
 import React from 'react'
 import { OrganizationGridContentHeader } from '../../components/OrganizationGridContentHeader'
-import { ListOfOrganizationGridView } from '../ListOfOrganizationGridView'
+import { ListOfOrganizationGridView } from '../../components/ListOfOrganizationGridView'
+import PropTypes from 'prop-types'
 
-export const GridView = () => {
+export const GridView = ({moveCardData}) => {
   return (
     <>
         <OrganizationGridContentHeader/>
-        <ListOfOrganizationGridView/>
+        <ListOfOrganizationGridView moveCardData={moveCardData}/>
     </>
   )
+}
+
+GridView.propTypes = {
+  moveCardData : PropTypes.func,
 }

@@ -7,6 +7,7 @@ import {DownOutlined, SearchOutlined, AppstoreOutlined,UnorderedListOutlined} fr
 // import { ListOfOrganizationListView } from '../ListOfOrganizationListView';
 
 export const OrganizationGridContentHeader = () => {
+  // let {url}=useRouteMatch();
   // const {Search}=Input;
   // const {Text}=Typography;
   const handleMenuClick = (e) => {
@@ -37,7 +38,7 @@ export const OrganizationGridContentHeader = () => {
         placeholder="Search for a oraganization"
         prefix={<SearchOutlined />}
         />
-      <Link to="/" className='icon1'>
+      <Link to="/Organizations" className='icon1'>
       <AppstoreOutlined />
       </Link>
       <Link to="/ListOfOrganizationListView" className='icon2'>

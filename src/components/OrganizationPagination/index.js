@@ -1,6 +1,7 @@
 import React from 'react'
 import "./OrganizationPagination.scss"
 import { Pagination } from 'antd'
+import PropTypes from 'prop-types'
 
 export const OrganizationPagination = ({setpage, pagesize}) => {
   return (
@@ -15,4 +16,10 @@ export const OrganizationPagination = ({setpage, pagesize}) => {
     />
      </div> 
   )
+}
+
+
+OrganizationPagination.propTypes = {
+  setpage : PropTypes.number,
+  pagesize : PropTypes.number
 }

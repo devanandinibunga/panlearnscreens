@@ -1,15 +1,16 @@
-import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import React, { useState } from 'react';
+import {BrowserRouter as Router, Route, Switch,useRouteMatch} from 'react-router-dom';
 import './App.scss';
 import 'antd/dist/antd.min.css'; // or 'antd/dist/antd.less'
 import { Layout } from 'antd';
 // import { ListOfOrganizationGridView } from './views/GridView/ListOfOrganizationGridView';
-import { ListOfOrganizationListView } from './views/ListOfOrganizationListView';
+// import { ListOfOrganizationListView } from './views/ListOfOrganizationListView';
 // import  {OrganizationGridContentHeader}  from './components/OrganizationGridContentHeader';
 // import  {OrganizationListContentHeader}  from './components/OrganizationListContentHeader';
 import {AddForm} from './views/AddForm';
 import {EditForm} from './views/EditForm';
 import { GridView } from './views/GridView';
+import { ListView } from './views/ListView';
 // import {EditForm} from './views/EditForm';
 
 
@@ -21,7 +22,16 @@ import { GridView } from './views/GridView';
 
 
 function App() {
+  let {path}=useRouteMatch();
   const { Header, Sider, Content } = Layout;
+
+  const [cardData,setCardData] = useState()
+
+  const moveCardData =(item) => {
+    setCardData(item)
+    console.log('card Data ', cardData)
+
+  }
   return (
       <Layout>
         <Header>Header</Header>
@@ -29,18 +39,17 @@ function App() {
             <Sider>Sider</Sider>
             <Content> 
               <Router>
-                {/* <Route exact path= "/" component={OrganizationGridContentHeader}/> */}
-                {/* <Route exact path= "/ListOfOrganizationListView" component={OrganizationListContentHeader}/> */}
                 <Switch>
-                    <Route exact path="/" component={GridView}/>
-                    <Route exact path="/ListOfOrganizationListView" component={ListOfOrganizationListView}/>
-                    {/* <Route exact path= "/new" component={AddOrganizationDetails}/>
-                    <Route exact path= "/edit" component={EditOrganizationDetails}/>*/}
-                    <Route exact path="/newAdd" component={AddForm}/>
-                    <Route exact path="/newEdit/:id" component={EditForm}/>
+                    <Route exact path="/Organizations" >
+                      <GridView moveCardData = {moveCardData}/>
+                    </Route>
+                    <Route exact path="/ListOfOrganizationListView" component={ListView}/>
+                    <Route exact path="newAdd" component={AddForm}/>
+                    <Route  path={path} >
+                      <EditForm cardData = {cardData}/>  
+                    </Route>
                 </Switch>
               </Router>
-            
             </Content>
         </Layout>
       </Layout>

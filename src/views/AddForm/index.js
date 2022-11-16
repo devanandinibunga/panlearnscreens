@@ -7,9 +7,15 @@ import { TreeSelect } from "antd";
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { AddEditForm } from '../../components/AddEditForm';
 // import { Link } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
 
 export const AddForm = () => {
+
+  const uniqueId=uuid();
+    const id=uniqueId.slice(0,3);
+
+
   // const {Text}=Typography;
   // const {Option}=Select;
 
@@ -210,14 +216,15 @@ const normFile = (e) => {
       totalCardData =parsedValue;
     }
     // const totalCardData =parsedValue;
-    let cardsCount=totalCardData.length;
-    cardsCount=cardsCount+1;
-    let cardId="card"+cardsCount;
+    // let cardsCount=totalCardData.length;
+    // cardsCount=cardsCount+1;
+    // let cardId="card"+cardsCount;
+
+    values['id'] = id
     
     values.logo=imageUrl;
     const cardsData = {
-          Id:cardId,
-          uniqueNo:cardsCount,
+          id:values.id,
           logo:values.logo,
           orgTitle: values.orgTitle,
           orgDomain: values.orgDomain,
@@ -232,7 +239,9 @@ const normFile = (e) => {
         };
         
         totalCardData.push(cardsData);
-        localStorage.setItem("cardsDataInLocalStorage",JSON.stringify(totalCardData))
+        localStorage.setItem("cardsDataInLocalStorage",JSON.stringify(totalCardData));
+        window.location.href="/Organizations";
+
         // return data
         // localStorage.setItem("result", JSON.stringify(data));
         // console.log(data);

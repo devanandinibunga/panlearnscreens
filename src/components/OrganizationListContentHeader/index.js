@@ -37,7 +37,7 @@ export const OrganizationListContentHeader = () => {
         placeholder="Search for a oraganization"
         prefix={<SearchOutlined />}
         />
-      <Link to="/" className='icon1'>
+      <Link to="/Organizations" className='icon1'>
       <AppstoreOutlined />
       </Link>
       <Link to="/ListOfOrganizationListView" className='icon2'>

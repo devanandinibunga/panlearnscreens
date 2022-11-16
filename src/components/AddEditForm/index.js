@@ -1,17 +1,39 @@
 import React,{useState,useEffect} from 'react'
 import { Input, Select,Form, Button } from 'antd'
 import {  Upload } from 'antd';
-import { TreeSelect } from "antd";
+import { TreeSelect} from "antd";
 import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
+// import { useHistory } from 'react-router-dom';
+// const [Text]=Typography;
 
-
-export const AddEditForm = ({ tProps,uploadButton,sendToLocalStorage,editedLocalStorageData,beforeUpload,handleChange,normFile,imageUrl}) => {
-    let eachCardDataToLocalStorage = localStorage.getItem("eachCardDataToLocalStorage");
-    let a= JSON.parse(eachCardDataToLocalStorage)
+export const AddEditForm = ({ tProps,cardData,uploadButton,sendToLocalStorage,editedLocalStorageData,beforeUpload,handleChange,normFile,imageUrl}) => {
+    // let eachCardDataToLocalStorage = localStorage.getItem("eachCardDataToLocalStorage");
+    // let a= JSON.parse(eachCardDataToLocalStorage)
+    // const countDown = () => {
+    //     const modal = Modal.success({
+    //     title: 'Password Changed',
+    //      content: `New Password has been sent to ${cardData.orgEmail}`,
+    //     });
+        
+    //     setTimeout(() => {
+    //     setIsResetPassword(false)
+    //     }, 100);
+        
+    //     setTimeout(() => {
+    //     modal.destroy();
+    //      }, 1000);
+    //     };
+    //     const [isResetPassword, setIsResetPassword] = useState(false);
+        
+    //     const showModal = () => {
+    //       setIsResetPassword(true);
+    //   };
+    // const history=useHistory();
     
     const [defaultValue,setDefaultValue]=useState(
         {
+
          orgTitle:"",
          orgEmail:"",
          orgDomain:"",
@@ -22,11 +44,11 @@ export const AddEditForm = ({ tProps,uploadButton,sendToLocalStorage,editedLocal
          address:"",
          admin:"",
          logo:"",
-       });
-       useEffect (() => {
+    });
+    useEffect (() => {
         //  setDefaultValue(a)  
         // console.log(location.href)
-        if (location.pathname ==="/newAdd"){
+        if (window.location.href ==="http://localhost:3000/newAdd"){
             setDefaultValue({
                 orgTitle:"",
                 orgEmail:"",
@@ -40,31 +62,30 @@ export const AddEditForm = ({ tProps,uploadButton,sendToLocalStorage,editedLocal
                 logo:"",
               })
         } else{    
-            setDefaultValue(a)
+            setDefaultValue(cardData)
         }
-         console.log(a)     
-       },[])
+             
+    },[])
         // imageUrl={defaultValue.logo};
+
+    
     return (
     <div>
     <Form
-    key={defaultValue.orgTitle}
+    key={defaultValue.id}
     getValueFromEvent={normFile}
     autoComplete="on"
     onFinish={(values) => {
-        if (location.href ==="http://localhost:3000/newAdd"){
+        if (window.location.href ==="http://localhost:3000/newAdd"){
           sendToLocalStorage(values); 
-          window.location.href="/";
+        //   window.location.href="/Organizations";
+
 
         } else{
             editedLocalStorageData(values);
-            localStorage.setItem("eachCardDataToLocalStorage",JSON.stringify(values));
-            window.location.href="/";
-
-
+            // localStorage.setItem("eachCardDataToLocalStorage",JSON.stringify(values));
+            window.location.href="/Organizations";
         }
-        // sendToLocalStorage(values);
-    //  console.log("result are here ", result);
 
     }}
     //  onFinishFailed={(error) => {
@@ -99,6 +120,72 @@ export const AddEditForm = ({ tProps,uploadButton,sendToLocalStorage,editedLocal
     )}
         </Upload>
     </Form.Item>
+    <div>
+        {/* <Form.Item style={{ width: "100%" }}>
+         if (location.href === "http://localhost:3000/newAdd"){
+            <>
+         <Button className="reset-button" onClick={showModal}>
+           Reset Password
+         </Button>
+         <Modal
+           open={isResetPassword}
+           // onCancel={countDown}
+           closable={false}
+           footer={null}
+         >
+           <div className="reset-password-container">
+             <Text className="reset-password-title"> Reset Password</Text>
+             <Form>
+               <Form.Item
+                 name="password"
+                 rules={[
+                   {
+                     required: true,
+                     message: "Please enter new password!",
+                   },
+                 ]}
+                 style={{ width: "100%" }}
+               >
+                 <Input.Password className="reset-password-input" placeholder="New Password" />
+               </Form.Item>
+               <Form.Item
+                 name="confirm"
+                 dependencies={["password"]}
+                 hasFeedback
+                 rules={[
+                   {
+                     required: true,
+                     message: "Please confirm your password!",
+                   },
+                   ({ getFieldValue }) => ({
+                     validator(_, value) {
+                       if (!value || getFieldValue("password") === value) {
+                         return Promise.resolve();
+                       }
+                       return Promise.reject(
+                         new Error(
+                           "The two passwords that you entered do not match!"
+                         )
+                       );
+                     },
+                   }),
+                 ]}
+               >
+                 <Input.Password className="reset-password-input" placeholder="Confirm Password" />
+               </Form.Item>
+               <Form.Item >
+                 <div className="reset-button-container">
+                 <Button type="primary" onClick={countDown}>Reset</Button>
+                   
+                 </div>
+               </Form.Item>
+             </Form>
+           </div>
+         </Modal>
+         </>
+            }
+       </Form.Item> */}
+       </div>
         </div> 
         <div className='add-org-form'>
         <Form.Item  name="orgTitle" label="Organization Name" className='add-org-form-item'>
@@ -142,7 +229,7 @@ export const AddEditForm = ({ tProps,uploadButton,sendToLocalStorage,editedLocal
         </div>
     </div>          
     <div className='add-org-button-container'>
-    <Link to="/">
+    <Link to="/Organizations">
         <Form.Item>
         <Button className='add-org-button'htmlType="Cancel" >Cancel</Button>
         </Form.Item>
@@ -165,5 +252,6 @@ AddEditForm.propTypes={
     editedLocalStorageData:PropTypes.func,
     imageUrl:PropTypes.string,
     defaultValue:PropTypes.object,
+    cardData:PropTypes.object
 }
    
